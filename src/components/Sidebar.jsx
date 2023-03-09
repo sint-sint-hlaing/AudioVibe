@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { HiOutlineHashtag, HiOutlineHome, HiOutlineMenu, HiOutlinePhotograph, HiOutlineUserGroup } from 'react-icons/hi';
-import { RiCloseLine } from 'react-icons/ri';
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import {
+  HiOutlineHashtag,
+  HiOutlineHome,
+  HiOutlineMenu,
+  HiOutlineUserGroup,
+} from "react-icons/hi";
+import { RiCloseLine } from "react-icons/ri";
 
 const links = [
-  { name: 'Discover', to: '/', icon: HiOutlineHome },
-  { name: 'Around You', to: '/around-you', icon: HiOutlinePhotograph },
-  { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
-  { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
+  { name: "Discover", to: "/", icon: HiOutlineHome },
+  { name: "Top Artists", to: "/top-artists", icon: HiOutlineUserGroup },
+  { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
 ];
 
 const NavLinks = ({ handleClick }) => (
@@ -32,23 +36,41 @@ const Sidebar = () => {
   return (
     <>
       <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-black">
-        {/* <img src={logo} alt="logo" className="w-full h-14 object-contain" /> */}
-        <h1 className='text-white'>Logo</h1>
+        <Link to="/">
+          <h1 class="cursor-pointer text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-white to-cyan-400">
+            {" "}
+            AudioVibe
+          </h1>
+        </Link>
         <NavLinks />
       </div>
 
       {/* Mobile sidebar */}
       <div className="absolute md:hidden block top-6 right-3">
         {!mobileMenuOpen ? (
-          <HiOutlineMenu className="w-6 h-6 mr-2 text-white z-10" onClick={() => setMobileMenuOpen(true)} />
+          <HiOutlineMenu
+            className="w-6 h-6 mr-2 text-white z-10"
+            onClick={() => setMobileMenuOpen(true)}
+          />
         ) : (
-          <RiCloseLine className="w-6 h-6 mr-2 text-white z-10" onClick={() => setMobileMenuOpen(false)} />
+          <RiCloseLine
+            className="w-6 h-6 mr-2 text-white z-10"
+            onClick={() => setMobileMenuOpen(false)}
+          />
         )}
       </div>
 
-      <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#1e1e1e] backdrop-blur-lg z-20 p-6 md:hidden smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
-        {/* <img src={logo} alt="logo" className="w-full h-14 object-contain" /> */}
-        Logo
+      <div
+        className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#1e1e1e] backdrop-blur-lg z-20 p-6 md:hidden smooth-transition ${
+          mobileMenuOpen ? "left-0" : "-left-full"
+        }`}
+      >
+        <Link to="/">
+          <h1 class="cursor-pointer text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-white to-cyan-400">
+            {" "}
+            AudioVibe
+          </h1>
+        </Link>
         <NavLinks handleClick={() => setMobileMenuOpen(false)} />
       </div>
     </>
